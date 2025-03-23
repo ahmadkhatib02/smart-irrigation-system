@@ -1,0 +1,51 @@
+---
+
+# Add Plant Page Component Documentation  
+
+## Overview  
+The **Add Plant Page** allows users to add a new plant to their profile by submitting its name, type, and image. Once added, the plant is stored in the Firebase Realtime Database under the user's plant list.  
+
+## Component Features  
+- Form-based plant creation with validation for required fields.  
+- Dynamically determines the plant's `id` based on the current plant count.  
+- Sets default plant metrics (humidity, pH level, and nutrients).  
+- Image upload uses a local path reference for frontend development purposes.  
+- Navigates back to the home page after successful submission or via a back button.  
+
+## Key Functionalities  
+
+### Form Handling  
+- The form requires three fields:  
+  - **Plant Name**  
+  - **Plant Type** (dropdown selection)  
+  - **Plant Image** (local file)  
+
+- On submit, the form data is pushed into Firebase under `users/{userID}/plants`.  
+
+### Plant Object Structure  
+Each plant entry added has the following structure:  
+- **id**: Incremented based on the current number of plants.  
+- **name**: Plant name input by the user.  
+- **type**: Plant type selected by the user.  
+- **imageUrl**: Local development image path (e.g., `./src/images/filename.png`).  
+- **metrics** (default values):  
+  - humidity: 50 (float)  
+  - pHLevel: 7.0 (float)  
+  - nutrients:  
+    - nitrogen: 20.0 (float)  
+    - phosphorus: 10.0 (float)  
+    - potassium: 15.0 (float)  
+
+### Navigation  
+- Clicking the **Done** button submits the form and redirects to `/homePage`.  
+- Clicking the **Cancel** button (with the back arrow) navigates back to `/homePage` without submission.  
+
+## Props  
+- **userID**: The current user's ID, used to determine where in the database to push the new plant.  
+
+## Imported Components  
+- `Footer` — Displays the page footer.  
+
+## Styling  
+- Styles are managed in `AddPlantPage.css`.  
+
